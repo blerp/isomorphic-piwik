@@ -1,4 +1,3 @@
-require("isomorphic-fetch"); // tslint:disable-line
 import queryString = require("query-string");
 
 export class Piwik {
@@ -12,12 +11,12 @@ export class Piwik {
     this.siteId = siteId;
   }
 
-  public report(params: IHTTPQueryParams) {
+  public report(params: IHTTPQueryParams = {}) {
     // Setting Default Values According to https://developer.piwik.org/api-reference/tracking-api
     params.idsite = params.idsite || this.siteId;
     params.rec = params.rec || 1;
     params.apiv = params.apiv || 1;
-    params.url = params.url || "/index.html";
+    params.url = params.url || this.getUrl();
 
     params._id = this.userId;
 
@@ -78,4 +77,12 @@ export class Piwik {
   }
 
   public trackAppDownload() {}
+
+  private getUrl(): string {
+    if (typeof window !== "undefined") {
+      return document.location.pathname;
+    }
+
+    return "/";
+  }
 }

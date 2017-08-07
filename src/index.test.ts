@@ -11,8 +11,15 @@ describe("isomorphic-piwik", () => {
     fetch.resetMocks();
   });
 
-  it("does a basic request", async () => {
-    await tracker.report({});
-    expect(fetch.mock.calls).toMatchSnapshot();
+  describe("posts a basic report", () => {
+    it("with an empty object", async () => {
+      await tracker.report({});
+      expect(fetch.mock.calls).toMatchSnapshot();
+    });
+
+    it("without an empty object", async () => {
+      await tracker.report();
+      expect(fetch.mock.calls).toMatchSnapshot();
+    });
   });
 });
