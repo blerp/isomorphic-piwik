@@ -8,7 +8,7 @@ export class Piwik {
   private userId: string;
 
   constructor(trackerHost: string, siteId: number) {
-    this.trackerUrl = `${trackerHost}/piwik.php`;
+    this.trackerUrl = `${trackerHost}`;
     this.siteId = siteId;
   }
 
@@ -17,13 +17,13 @@ export class Piwik {
     params.idsite = params.idsite || this.siteId;
     params.rec = params.rec || 1;
     params.apiv = params.apiv || 1;
-    params.url = params.url || "/";
+    params.url = params.url || "/index.html";
 
     params._id = this.userId;
 
     const stringifiedParams = queryString.stringify(params);
 
-    return fetch(`${this.trackerUrl}${stringifiedParams}`, { method: "post" });
+    return fetch(`${this.trackerUrl}?${stringifiedParams}`, { method: "post" });
   }
 
   /**

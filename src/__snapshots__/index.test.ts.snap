@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`isomorphic-piwik does a basic request 1`] = `
+Array [
+  Array [
+    "localhost/piwik.php?apiv=1&idsite=1&rec=1&url=%2Findex.html",
+    Object {
+      "method": "post",
+    },
+  ],
+]
+`;
