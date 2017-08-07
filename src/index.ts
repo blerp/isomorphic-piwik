@@ -76,7 +76,8 @@ export class Piwik {
     });
   }
 
-  public trackAppDownload() {}
+  // TODO: Implement
+  // public trackAppDownload() {}
 
   private getUrl(): string {
     if (typeof window !== "undefined") {
