@@ -20,6 +20,19 @@ export class Piwik {
 
     params._id = this.userId;
 
+    if (typeof document !== 'undefined') {
+      // I'm on the web
+      const ReactNative: any = require("react-native");
+
+    }
+    else if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+      // I'm in react-native
+
+    }
+    else {
+      // I'm in node js
+    }
+
     const stringifiedParams = queryString.stringify(params);
 
     return fetch(`${this.trackerUrl}?${stringifiedParams}`, { method: "post" });
