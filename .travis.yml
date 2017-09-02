@@ -5,3 +5,5 @@ node_js:
 script:
   - yarn lint
   - yarn test
+after_success:
+  - yarn coveralls
