@@ -2,8 +2,10 @@
   "name": "isomorphic-piwik",
   "version": "1.0.0",
   "description": "An isomorphic wrapper around the HTTP Piwik API",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
+    "build": "tsc",
+    "prepublish": "tsc",
     "lint": "tslint 'src/**/*.ts'",
     "precommit": "lint-staged",
     "test": "jest"
