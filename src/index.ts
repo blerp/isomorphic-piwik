@@ -22,15 +22,19 @@ export class Piwik {
 
     if (typeof document !== 'undefined') {
       // I'm on the web
-      const ReactNative: any = require("react-native");
-
+      params.cookie = navigator.cookieEnabled ? 1 : 0
+      params.ua = navigator.userAgent || 'unknown'
     }
-    else if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+    else if (typeof navigator !== 'undefined' && navigator.product === "ReactNative") {
       // I'm in react-native
-
+      // console.log('working labs!!')
+      const ReactNative = require("react-native");
+      const {height, width} = ReactNative.Dimensions.get("window");
+      params.res = `${width}x${height}`
     }
     else {
       // I'm in node js
+
     }
 
     const stringifiedParams = queryString.stringify(params);
