@@ -13,27 +13,39 @@ export class Piwik {
 
   public report(params: IHTTPQueryParams = {}) {
     // Setting Default Values According to https://developer.piwik.org/api-reference/tracking-api
-    params.idsite = params.idsite || this.siteId;
+    params.idSite = params.idSite || this.siteId;
     params.rec = params.rec || 1;
     params.apiv = params.apiv || 1;
     params.url = params.url || this.getUrl();
-
-    params._id = this.userId;
+    params._id = this.userId || params._id;
 
     if (typeof document !== 'undefined') {
-      // I'm on the web
-      params.cookie = navigator.cookieEnabled ? 1 : 0
-      params.ua = navigator.userAgent || 'unknown'
+      // Website specific parameters
+      params.ua = navigator.userAgent || 'unknown';
+      params.urlref =  document.referrer || 'direct';
+      params.res = `${window.outerWidth}x${window.outerHeight}`
+      params.lang = navigator.language || 'undefined';
+      params.cookie = navigator.cookieEnabled ? 1 : 0;
+
     }
     else if (typeof navigator !== 'undefined' && navigator.product === "ReactNative") {
-      // I'm in react-native
-      // console.log('working labs!!')
-      const ReactNative = require("react-native");
-      const {height, width} = ReactNative.Dimensions.get("window");
-      params.res = `${width}x${height}`
+      // React native specific parameters
+      try {
+        const ReactNative = require("react-native");
+        const { Platform } = require('react')
+
+        const {height, width} = ReactNative.Dimensions.get("window");
+        params.res = `${width}x${height}`
+        params.ua = navigator.userAgent || Platform.OS || 'unknown'
+        params.lang = navigator.language || 'undefined';
+        params.cookie = navigator.cookieEnabled ? 1 : 0;
+
+      } catch (err) {
+        params.ua = navigator.userAgent || 'unknown'
+      }
     }
     else {
-      // I'm in node js
+      // Node.js specific parameters
 
     }
 
@@ -98,6 +110,9 @@ export class Piwik {
 
   private getUrl(): string {
     if (typeof window !== "undefined") {
+      if(document.location.pathname === "React App"){
+        return "/"
+      }
       return document.location.pathname;
     }
 
