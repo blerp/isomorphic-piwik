@@ -13,7 +13,7 @@ export class Piwik {
 
   public report(params: IHTTPQueryParams = {}) {
     // Setting Default Values According to https://developer.piwik.org/api-reference/tracking-api
-    params.idSite = params.idSite || this.siteId;
+    params.idsite = params.idsite || this.siteId;
     params.rec = params.rec || 1;
     params.apiv = params.apiv || 1;
     params.url = params.url || this.getUrl();
@@ -38,7 +38,6 @@ export class Piwik {
         params.res = `${width}x${height}`
         params.ua = navigator.userAgent || Platform.OS || 'unknown'
         params.lang = navigator.language || 'undefined';
-
       } catch (err) {
         throw(err)
       }
