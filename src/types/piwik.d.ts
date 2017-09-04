@@ -8,7 +8,7 @@ interface IHTTPQueryParams {
    */
 
   /** The ID of the website we're tracking a visit/action for. */
-  idSite?: number;
+  idsite?: number;
   /** Required for tracking, must be set to one, eg, `&rec=1`. */
   rec?: number;
   /** The full URL for the current action. */

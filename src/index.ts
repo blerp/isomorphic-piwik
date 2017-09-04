@@ -32,16 +32,15 @@ export class Piwik {
       // React native specific parameters
       try {
         const ReactNative = require("react-native");
-        const { Platform } = require('react')
+        const { Platform, Dimensions } = ReactNative
 
-        const {height, width} = ReactNative.Dimensions.get("window");
+        const {height, width} = Dimensions.get("window");
         params.res = `${width}x${height}`
         params.ua = navigator.userAgent || Platform.OS || 'unknown'
         params.lang = navigator.language || 'undefined';
-        params.cookie = navigator.cookieEnabled ? 1 : 0;
 
       } catch (err) {
-        params.ua = navigator.userAgent || 'unknown'
+        throw(err)
       }
     }
     else {
