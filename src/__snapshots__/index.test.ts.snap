@@ -1,5 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`isomorphic-piwik for React-Native posts a basic report with an empty object 1`] = `
+Array [
+  Array [
+    "localhost/piwik.php?apiv=1&idsite=1&rec=1&url=%2F",
+    Object {
+      "method": "post",
+    },
+  ],
+]
+`;
+
+exports[`isomorphic-piwik for React-Native posts a basic report without an empty object 1`] = `
+Array [
+  Array [
+    "localhost/piwik.php?apiv=1&idsite=1&rec=1&url=%2F",
+    Object {
+      "method": "post",
+    },
+  ],
+]
+`;
+
 exports[`isomorphic-piwik posts a basic report with an empty object 1`] = `
 Array [
   Array [

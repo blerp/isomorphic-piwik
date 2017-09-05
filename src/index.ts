@@ -108,9 +108,6 @@ export class Piwik {
 
   private getUrl(): string {
     if (typeof window !== "undefined") {
-      if(document.location.pathname === "React App"){
-        return "/"
-      }
       return document.location.pathname;
     }
 
