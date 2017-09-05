@@ -17,8 +17,35 @@ export class Piwik {
     params.rec = params.rec || 1;
     params.apiv = params.apiv || 1;
     params.url = params.url || this.getUrl();
+    params._id = this.userId || params._id;
 
-    params._id = this.userId;
+    if (typeof document !== 'undefined') {
+      // Website specific parameters
+      params.ua = navigator.userAgent || 'unknown';
+      params.urlref =  document.referrer || 'direct';
+      params.res = `${window.outerWidth}x${window.outerHeight}`
+      params.lang = navigator.language || 'undefined';
+      params.cookie = navigator.cookieEnabled ? 1 : 0;
+
+    }
+    else if (typeof navigator !== 'undefined' && navigator.product === "ReactNative") {
+      // React native specific parameters
+      try {
+        const ReactNative = require("react-native");
+        const { Platform, Dimensions } = ReactNative
+
+        const {height, width} = Dimensions.get("window");
+        params.res = `${width}x${height}`
+        params.ua = navigator.userAgent || Platform.OS || 'unknown'
+        params.lang = navigator.language || 'undefined';
+      } catch (err) {
+        throw(err)
+      }
+    }
+    else {
+      // Node.js specific parameters
+
+    }
 
     const stringifiedParams = queryString.stringify(params);
 

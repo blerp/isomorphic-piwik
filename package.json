@@ -9,7 +9,8 @@
     "lint": "tslint 'src/**/*.ts'",
     "precommit": "lint-staged",
     "test": "jest",
-    "coveralls": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls"
+    "coveralls":
+      "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls"
   },
   "lint-staged": {
     "*.ts": ["tslint --fix", "jest --bail --findRelatedTests", "git add"],
@@ -36,6 +37,9 @@
     "lint-staged": "4.1.0",
     "nyc": "11.1.0",
     "prettier": "1.6.1",
+    "react": "^15.6.1",
+    "react-native": "^0.48.1",
+    "react-native-mock": "^0.3.1",
     "ts-jest": "20.0.14",
     "tslint": "5.7.0",
     "tslint-config-prettier": "1.5.0",
