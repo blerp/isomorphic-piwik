@@ -34,7 +34,7 @@
     "jest": "21.0.1",
     "jest-fetch-mock": "1.2.1",
     "lint-staged": "4.1.0",
-    "nyc": "11.2.0",
+    "nyc": "11.2.1",
     "prettier": "1.6.1",
     "ts-jest": "21.0.0",
     "tslint": "5.7.0",
